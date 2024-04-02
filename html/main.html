@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Side Navigation Bar</title>
+
+</head>
+
+<body>
+    <div class="row justify-content-center align-items-start g-5">
+        <div class="col col-md-2">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                    aria-selected="true">Home</button>
+                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                    aria-selected="false">Profile</button>
+                <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                    aria-selected="false">Messages</button>
+                <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
+                    aria-selected="false">Settings</button>
+            </div>
+        </div>
+        <div class="col col-md-10 border">
+            <div class="tab-content m-4" id="v-pills-tabContent">
+                <div class="tab-pane fade " id="v-pills-home" role="tabpanel"
+                    aria-labelledby="v-pills-home-tab">
+                    <h6 class="display-6">Purchase Management</h6>
+                    <div class="row mt-1">
+
+                        <div class="col-4 mt-2">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                                    aria-describedby="button-addon2">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    id="button-addon2">Search</button>
+                            </div>
+                        </div>
+
+                        <div class="col-2 mt-1">
+                            <button type="button" class="btn btn-secondary">Add Item</button>
+                        </div>
+                        <div class="col-2 mt-1">
+                            <button type="button" class="btn btn-secondary">Add Product</button>
+                        </div>
+                        <div class="col-2 mt-1">
+                            <button type="button" class="btn btn-secondary">Look Product</button>
+                        </div>
+                        <div class="col-2 mt-1">
+                            <button type="button" class="btn btn-secondary">Add Category</button>
+                        </div>
+                    </div>
+                    <div
+                        class="row justify-content-center align-items-center g-2 mt-3"
+                    >
+                        <div class="col">
+                            <div
+                                class="table-responsive"
+                            >
+                                <table
+                                    class="table table-hover table-bordered text-center align-middle"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">itemId</th>
+                                            <th scope="col">category</th>
+                                            <th scope="col">product</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">quantity</th>
+                                            <th scope="col">operation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="">
+                                            <td scope="row">R1C1</td>
+                                            <td>R1C2</td>
+                                            <td>R1C3</td>
+                                            <td>R1C4</td>
+                                            <td>R1C5</td>
+
+                                            <td>
+                                                <button  class="btn-secondary btn">add</button>
+                                                <button class="btn-secondary btn">edit</button>
+                                                <button class="btn-secondary btn">delete</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td scope="row">R1C1</td>
+                                            <td>R1C2</td>
+                                            <td>R1C3</td>
+                                            <td>R1C4</td>
+                                            <td>R1C5</td>
+
+                                            <td>
+                                                <button  class="btn-secondary btn">add</button>
+                                                <button class="btn-secondary btn">edit</button>
+                                                <button class="btn-secondary btn">delete</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <<nav aria-label="Page navigation">
+                        <ul
+                            class="pagination   justify-content-center  "
+                        >
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                    
+
+                </div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <h6 class="display-6">Account</h6>
+                    <div
+                        class="row justify-content-center align-items-center g-2
+                        "
+                    >
+                        <div class="col-12">
+                            <div
+                                class="table-responsive"
+                            >
+                                <table
+                                    class="table text-center align-center"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">user</th>
+                                            <th scope="col">first name</th>
+                                            <th scope="col">last name</th>
+                                            <th scope="col">operation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="">
+                                            <td scope="row">R1C1</td>
+                                            <td>R1C2</td>
+                                            <td>R1C3</td>
+                                            <td>R1C3</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary">check</button>
+                                                    <button type="button" class="btn btn-primary">reset</button>
+                                                    <button type="button" class="btn btn-primary">froze</button>
+                                            </td>
+
+                                        </tr>
+                                        <tr class="">
+                                            <td scope="row">Item</td>
+                                            <td>Item</td>
+                                            <td>Item</td>
+                                            <td>R1C3</td>
+                                            <td>
+                                                    <button type="button" class="btn btn-primary">Left</button>
+                                                    <button type="button" class="btn btn-primary">Middle</button>
+                                                    <button type="button" class="btn btn-primary">Right</button>
+                                                
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                        <div class="col">
+                            <nav aria-label="Page navigation">
+                                <ul
+                                    class="pagination  justify-content-center"
+                                >
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+
+                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <h6 class="display-6">Order</h6>
+                    <div
+                        class="row justify-content-center align-items-center g-2
+                        "
+                    >
+                        <div class="col-12">
+                            <div
+                                class="table-responsive"
+                            >
+                                <table
+                                    class="table text-center align-center"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">orderId</th>
+                                            <th scope="col">user</th>
+                                            <th scope="col">date</th>
+                                            <th scope="col">total</th>
+                                            <th scope="col">operation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="">
+                                            <td scope="row">R1C1</td>
+                                            <td>R1C2</td>
+                                            <td>R1C3</td>
+                                            <td>R1C3</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary">Left</button>
+                                                    <button type="button" class="btn btn-primary">Middle</button>
+                                                    <button type="button" class="btn btn-primary">Right</button>
+                                            </td>
+
+                                        </tr>
+                                        <tr class="">
+                                            <td scope="row">Item</td>
+                                            <td>Item</td>
+                                            <td>Item</td>
+                                            <td>R1C3</td>
+                                            <td>
+                                                    <button type="button" class="btn btn-primary">Left</button>
+                                                    <button type="button" class="btn btn-primary">Middle</button>
+                                                    <button type="button" class="btn btn-primary">Right</button>
+                                                
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                        <div class="col">
+                            <nav aria-label="Page navigation">
+                                <ul
+                                    class="pagination  justify-content-center"
+                                >
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <script src="../bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
