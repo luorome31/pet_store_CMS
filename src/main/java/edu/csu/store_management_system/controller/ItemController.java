@@ -55,13 +55,13 @@ public class ItemController {
     /**
      * 修改商品信息。
      * @author Luo
-     * @param itemId     商品ID
      * @param itemDetail 包含要修改的商品信息的对象
      * @return JSON数据格式，包含一个布尔值字段，指示修改是否成功
      */
     @PutMapping("/{itemId}")
-    public ResponseEntity<Map<String, Boolean>> updateItem(@PathVariable int itemId, @RequestBody ItemDetail itemDetail) {
-        boolean success = itemService.updateItem(itemId, itemDetail);
+    public ResponseEntity<Map<String, Boolean>> updateItem(@RequestBody ItemDetail itemDetail) {
+        Integer supplierId = 1;
+        boolean success = itemService.updateItem(itemDetail, supplierId);
         Map<String, Boolean> response = new HashMap<>();
         response.put("success", success);
         return ResponseEntity.ok().body(response);
@@ -74,7 +74,7 @@ public class ItemController {
      * @return 返回是否修改成功的json数据，成功的话包含成功的状态码和具体删除的是哪一项
      */
     @DeleteMapping("/{itemId}")
-    public ResponseEntity<Object> removeItem(@PathVariable int itemId) {
+    public ResponseEntity<Object> removeItem(@PathVariable String itemId) {
         boolean success = itemService.removeItem(itemId);
         if (success) {
             // 创建一个包含成功信息的JSON对象
@@ -115,7 +115,9 @@ public class ItemController {
      */
     @PostMapping("/add")
     public ResponseEntity<Object> addItem(@RequestBody ItemDetail itemDetail) {
-        boolean success = itemService.addItem(itemDetail);
+        //获取session对象中的supplierId
+        Integer supplierId = 1;
+        boolean success = itemService.addItem(itemDetail, supplierId);
         if (success) {
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);

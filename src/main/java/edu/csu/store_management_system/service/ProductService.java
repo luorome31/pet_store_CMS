@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProductService {
     boolean addProduct(ProductVO productVO);
     boolean deleteProduct(String productId);
-    boolean updateProduct(String productId, ProductVO productVO);
+    boolean updateProduct(ProductVO productVO);
 
     List<ProductPreview> getProductsBasicInfo();
     List<ProductVO> getProductsByPage(Integer page, Integer size);

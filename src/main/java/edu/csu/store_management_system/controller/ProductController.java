@@ -71,7 +71,7 @@ public class ProductController {
      */
     @PutMapping("/{productId}")
     public ResponseEntity<ResponseMessage> updateProduct(@PathVariable String productId, @RequestBody ProductVO product) {
-        boolean isSuccess = productService.updateProduct(productId, product);
+        boolean isSuccess = productService.updateProduct(product);
         ResponseMessage responseMessage = new ResponseMessage();
         if (!isSuccess) {
             responseMessage.setMessage("update failed");
