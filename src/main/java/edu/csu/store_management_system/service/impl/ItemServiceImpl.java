@@ -1,6 +1,7 @@
 package edu.csu.store_management_system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import edu.csu.store_management_system.domain.Inventory;
 import edu.csu.store_management_system.domain.Item;
@@ -25,21 +26,22 @@ public class ItemServiceImpl implements ItemService {
     private ProductMapper productMapper;
     @Autowired
     private InventoryMapper inventoryMapper;
+
     public List<ItemSummary> getItemList() {
         return null;
     }
-    /**
 
-        * @param page 页码
-        * @param size 每页大小
-        * @param supplierId 供应商id
-        * @return 分页后的商品列表
-        * @author Luo
+    /**
+     * @param page       页码
+     * @param size       每页大小
+     * @param supplierId 供应商id
+     * @return 分页后的商品列表
+     * @author Luo
      */
-    public List<ItemSummary> getItemListByPage(Integer page, Integer size ,Integer supplierId) {
+    public List<ItemSummary> getItemListByPage(Integer page, Integer size, Integer supplierId) {
         QueryWrapper<Item> supplierId_equ = new QueryWrapper<Item>().eq("supplier", supplierId);
         Page<Item> itemPage = new Page<>(page, size);
-        itemPage= itemMapper.selectPage(itemPage, supplierId_equ);
+        itemPage = itemMapper.selectPage(itemPage, supplierId_equ);
         List<Item> items = itemPage.getRecords();
 
         List<ItemSummary> itemSummaries = items.stream().map(item -> {
@@ -66,9 +68,10 @@ public class ItemServiceImpl implements ItemService {
 
     /**
      * 根据商品id获取商品详情
-     * @author Luo
+     *
      * @param itemId 商品id
      * @return 商品详情
+     * @author Luo
      */
     @Override
     public ItemDetail getItemDetail(String itemId) {
@@ -91,8 +94,8 @@ public class ItemServiceImpl implements ItemService {
         String image = RegexUtils.extractSrc(product.getDescn());
 
         itemDetail.setCategory(product.getCategory());
-        itemDetail.setImage("../"+image);
-        itemDetail.setDescription(item.getAttr1()+" "+descn);
+        itemDetail.setImage("../" + image);
+        itemDetail.setDescription(item.getAttr1() + " " + descn);
 
         return itemDetail;
 
@@ -100,26 +103,49 @@ public class ItemServiceImpl implements ItemService {
 
     /**
      * 被ItemController调用，用于修改商品信息。
-     * @author
-     * @param itemId     商品ID
+     * @author luo
      * @param itemDetail 包含要修改的商品信息的对象
      * @return 修改是否成功的boolean信息
+     * @author
      */
     @Override
-    public boolean updateItem(int itemId, ItemDetail itemDetail) {
-        return false;
+    public boolean updateItem(ItemDetail itemDetail,Integer supplierId) {
+        Item item = new Item();
+        item.setItemid(itemDetail.getItemId());
+        item.setProductid(itemDetail.getProduct());
+        item.setListprice(itemDetail.getList_price());
+        item.setUnitcost(itemDetail.getUnit_cost());
+        item.setAttr1(itemDetail.getDescription());
+        item.setSupplier(supplierId);
+        item.setStatus("P");
+        UpdateWrapper<Item> itemid = new UpdateWrapper<Item>().eq("itemid", itemDetail.getItemId());
+        itemMapper.update(item,itemid);
+
+
+        Inventory inventory = new Inventory();
+        inventory.setItemid(itemDetail.getItemId());
+        inventory.setQty(itemDetail.getQuantity());
+        UpdateWrapper<Inventory> itemid1 = new UpdateWrapper<Inventory>().eq("itemid", itemDetail.getItemId());
+        inventoryMapper.update(inventory,itemid1);
+
+        return true;
     }
 
     /**
      * 被ItemController调用，用于下架商品。
-     * @author
+     * @author Luo
      * @param itemId 商品ID
      * @return boolean，表示是否删除成功
+     * @author
      */
-    public boolean removeItem(int itemId) {
-
-        return true; // 假设下架成功返回true，否则返回false
+    public boolean removeItem(String itemId) {
+        QueryWrapper<Item> itemid_Item_table = new QueryWrapper<Item>().eq("itemid", itemId);
+        QueryWrapper<Inventory> itemid_Inventory_table = new QueryWrapper<Inventory>().eq("itemid", itemId);
+        itemMapper.delete(itemid_Item_table);
+        inventoryMapper.delete(itemid_Inventory_table);
+        return true;
     }
+
     /**
      * 被ItemController调用，用于搜索商品,有点麻烦，感觉需要自己编写SQL语句
      * @author
@@ -127,6 +153,7 @@ public class ItemServiceImpl implements ItemService {
      * @param page    当前页数
      * @param size    每页显示数量
      * @return List<ItemSummary> 搜索结果列表
+     * @author
      */
     public List<ItemSummary> searchItems(String keyword, int page, int size) {
 
@@ -135,12 +162,29 @@ public class ItemServiceImpl implements ItemService {
 
     /**
      * 被 ItemController 调用，用于添加商品。
-     *
+     * @author Luo
      * @param itemDetail 包含要添加的商品信息的对象
+     * @param supplierId 供应商id
      * @return boolean，表示是否添加成功
+     * @author
      */
-    public boolean addItem(ItemDetail itemDetail) {
-        return true; // 假设添加成功返回true，否则返回false
+    public boolean addItem(ItemDetail itemDetail, Integer supplierId) {
+        Item item = new Item();
+        item.setItemid(itemDetail.getItemId());
+        item.setProductid(itemDetail.getProduct());
+        item.setListprice(itemDetail.getList_price());
+        item.setUnitcost(itemDetail.getUnit_cost());
+        item.setAttr1(itemDetail.getDescription());
+        item.setStatus("P");
+        item.setSupplier(supplierId);
+        itemMapper.insert(item);
+
+        Inventory inventory = new Inventory();
+        inventory.setItemid(itemDetail.getItemId());
+        inventory.setQty(itemDetail.getQuantity());
+        inventoryMapper.insert(inventory);
+
+        return true;
     }
 
 }

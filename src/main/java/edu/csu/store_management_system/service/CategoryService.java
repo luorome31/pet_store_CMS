@@ -6,7 +6,7 @@ import edu.csu.store_management_system.vo.CategoryVO;
 import java.util.List;
 
 public interface CategoryService {
-    boolean addCategory(String categoryName);
+    boolean addCategory(CategoryVO categoryVO);
     List<CategoryPreview> getCategoriesBasicInfo();
     List<CategoryVO> getCategoriesByPage(Integer page, Integer size);
 }

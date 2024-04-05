@@ -1,6 +1,9 @@
 package edu.csu.store_management_system.domain;
 
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 public class Item {
 
   private String itemid;

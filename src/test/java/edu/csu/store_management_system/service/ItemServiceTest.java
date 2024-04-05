@@ -36,4 +36,36 @@ class ItemServiceTest {
 
 
     }
+    @Test
+    void addItem() {
+
+        ItemDetail itemDetail = new ItemDetail();
+        itemDetail.setItemId("EST-101");
+        itemDetail.setProduct("FI-SW-01");
+        itemDetail.setList_price(10.0);
+        itemDetail.setUnit_cost(5.0);
+        itemDetail.setDescription("test");
+        itemDetail.setQuantity(Long.valueOf(100));
+
+        boolean isSuccess = itemService.addItem(itemDetail, 1);
+        assertTrue(isSuccess);
+    }
+    @Test
+    void updateItem() {
+        ItemDetail itemDetail = new ItemDetail();
+        itemDetail.setItemId("EST-101");
+        itemDetail.setProduct("FI-SW-01");
+        itemDetail.setList_price(10.0);
+        itemDetail.setUnit_cost(5.0);
+        itemDetail.setDescription("test");
+        itemDetail.setQuantity(Long.valueOf(0));
+
+        boolean isSuccess = itemService.updateItem(itemDetail,1);
+        assertTrue(isSuccess);
+    }
+    @Test
+    void removeItem() {
+        boolean isSuccess = itemService.removeItem("EST-101");
+        assertTrue(isSuccess);
+    }
 }
